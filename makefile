@@ -92,17 +92,17 @@ minimal:
 
 development:
 	$(call info, "Installing development tools")
-	#@$(INSTALL) zsh tmux vim-nox
-	#@$(MAKE) zshrc
-	#@$(MAKE) tmux 
-	#@$(MAKE) vimrc
-	#@$(MAKE) sshrc
+	@$(call install, zsh tmux vim-nox)
+	@$(MAKE) zshrc
+	@$(MAKE) tmux 
+	@$(MAKE) vimrc
+	@$(MAKE) sshrc
 	$(call symlink,dev)
 	@$(SHELL "sudo chsh -s $(which zsh)"
 
 desktop:
 	$(call info, "Installing GUI")
-	@$(INSTALL) rxvt-unicode-256color fonts-inconsolata
+	@$(call install, rxvt-unicode-256color fonts-inconsolata)
 	$(call symlink,gui)
 
 zshrc: 
@@ -125,7 +125,7 @@ sshrc:
 	@mv $@ $(BIN)
 
 server:
-	$(INSTALL) ca-certificates build-essential
+	@$(call install, ca-certificates build-essential)
 	@$(MAKE) lamp
 
 lamp:
@@ -135,5 +135,5 @@ lamp:
 
 nodejs:
 	$(call info, "Installing Node.js")
-	@$(INSTALL) npm nodejs
+	$(call install, npm nodejs)
 	@sudo ln -s /usr/bin/nodejs /usr/bin/node
