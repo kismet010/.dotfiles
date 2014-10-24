@@ -13,7 +13,14 @@ BIN = ~/bin
 SRC = ~/src
 WWW = ~/www
 
-INSTALL = sudo apt-get -y --force-yes install --no-install-recommends
+USER = $(shell id -u)
+ifneq ($USER, 0)  # Check root
+	SUDO = sudo
+endif
+
+define install
+	$(info, $(SUDO)) apt-get -y --force-yes install --no-install-recommends $1
+endef
 
 define symlink
 	@PWD=$$(pwd)
@@ -117,9 +124,13 @@ sshrc:
 	@chmod +x $@ 
 	@mv $@ $(BIN)
 
+server:
+	$(INSTALL) ca-certificates build-essential
+	@$(MAKE) lamp
+
 lamp:
-	$(call info, "Installing server apps")
-	@$(INSTALL) apache2 mysql-server php5-mysql php5-cli php5-mcrypt
+	$(call info, "Installing lamp")
+	$(call install, apache2 mysql-server php5-mysql php5-cli php5-mcrypt)
 	@sudo service apache2 restart
 
 nodejs:
