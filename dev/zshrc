@@ -1,0 +1,184 @@
+# TTY colors per host
+if [[ $HOST == "hatak" ]]; then
+    echo -en "\e]P0000000"
+    echo -en "\e]P8333333"
+    echo -en "\e]P1592c2c"
+    echo -en "\e]P9592c2c"
+    echo -en "\e]P2274f27"
+    echo -en "\e]PA274f27"
+    echo -en "\e]P34a4a24"
+    echo -en "\e]PB4a4a24"
+    echo -en "\e]P4273f61"
+    echo -en "\e]PC273f61"
+    echo -en "\e]P54d364d"
+    echo -en "\e]PD4d364d"
+    echo -en "\e]P6214a43"
+    echo -en "\e]PE214a43"
+    echo -en "\e]P7777777"
+    echo -en "\e]PF888888"
+    echo -en '\E[0;37;40m\E[8]'
+    clear
+else
+    echo -en "\e]P0000000"
+    echo -en "\e]P8333333"
+    echo -en "\e]P1592c2c"
+    echo -en "\e]P9592c2c"
+    echo -en "\e]P2274f27"
+    echo -en "\e]PA274f27"
+    echo -en "\e]P34a4a24"
+    echo -en "\e]PB4a4a24"
+    echo -en "\e]P4273f61"
+    echo -en "\e]PC273f61"
+    echo -en "\e]P54d364d"
+    echo -en "\e]PD4d364d"
+    echo -en "\e]P6214a43"
+    echo -en "\e]PE214a43"
+    echo -en "\e]P7777777"
+    echo -en "\e]PF888888"
+    echo -en '\E[0;37;40m\E[8]'
+    clear
+fi
+
+ZSH=$HOME/.oh-my-zsh
+ZSH_THEME=""
+CASE_SENSITIVE="true"
+plugins=(git autojump)
+source $ZSH/oh-my-zsh.sh
+
+export PATH=$PATH:$HOME/bin:$HOME/.autojump/bin:$HOME/.autojump/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/java/jre/bin:/usr/bin/core_perl:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/java/jre/bin:/usr/bin/core_perl:/home/kismet/.gem/ruby/2.0.0/bin
+
+# Prompt
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[blue]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+
+git_custom_status() {
+  local cb=$(current_branch)
+  if [ -n "$cb" ]; then
+    echo " $ZSH_THEME_GIT_PROMPT_PREFIX$(current_branch)$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+  fi
+}
+
+PROMPT="%n@%M %l %W %T"
+#RPROMPT=""
+# Vi modes
+function prompt zle-line-init zle-keymap-select {
+    PROMPT="%{$fg[blue]%}${${KEYMAP/vicmd/N}/(main|viins)/I}%{$fg[green]%} %~$(git_custom_status)%{$fg[green]%} ➜%{$reset_color%} "
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+
+# KEYS
+
+# Vi
+bindkey -v
+bindkey "ç" vi-cmd-mode
+# History
+bindkey -M vicmd "k" history-beginning-search-backward
+bindkey -M vicmd "j" history-beginning-search-forward 
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward 
+# End, home, del...
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
+bindkey "\e[5~" beginning-of-history
+bindkey "\e[6~" end-of-history
+bindkey "\e[2~" quoted-insert
+bindkey "\e[3~" delete-char
+bindkey "\e[5C" forward-word
+bindkey "\eOc" emacs-forward-word
+bindkey "\e[5D" backward-word
+bindkey "\eOd" emacs-backward-word
+bindkey "\e\e[C" forward-word
+bindkey "\e\e[D" backward-word
+bindkey "\e[Z" reverse-menu-complete
+# Rxvt
+bindkey "\e[7~" beginning-of-line
+bindkey "\e[8~" end-of-line
+# No rh/debian xterm
+bindkey "\eOH" beginning-of-line
+bindkey "\eOF" end-of-line
+
+
+# OPTIONS
+
+eval `dircolors -b`
+export LANG=es_ES.utf-8
+export PATH=$PATH:$HOME/bin/sh:$HOME/.gem/ruby/1.9.1/bin
+export EDITOR="vim"
+export BROWSER="chromium"
+export HISTFILE=~/.zsh_history
+export HISTSIZE=100000
+export SAVEHIST=100000
+# Video acceleration
+export LIBVA_DRIVER_NAME=vdpau
+
+# Autocomplete
+autoload -U compinit && compinit -u
+# with arrow keys
+zstyle ':completion:*' menu select
+
+# Autojump
+[[ -s ~/.autojump/etc/profile.d/autojump.zsh ]] && . ~/.autojump/etc/profile.d/autojump.zsh
+export AUTOJUMP_IGNORE_CASE=1
+# One tab for completition instead of two
+setopt nolistambiguous
+
+# Python virtualenv
+export WORKON_HOME=~/.virtualenvs
+if [ -f /usr/bin/virtualenvwrapper.sh ]; then
+    source /usr/bin/virtualenvwrapper.sh
+elif [ -f /etc/bash_completion.d/virtualenvwrapper ]; then
+    source /etc/bash_completion.d/virtualenvwrapper
+fi
+
+# Ruby gems
+export GEM_HOME=~/.gem/ruby/1.9.1/bin
+
+setopt autopushd pushdminus pushdsilent pushdtohome
+setopt autocd
+setopt cdablevars
+setopt ignoreeof
+setopt interactivecomments
+setopt nobanghist
+setopt noclobber
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
+setopt SH_WORD_SPLIT
+setopt nohup
+
+
+# ALIAS
+
+# Extensions
+alias -s html=$BROWSER
+alias -s org=$BROWSER
+alias -s php=$BROWSER
+alias -s com=$BROWSER
+alias -s net=$BROWSER
+alias -s png=feh
+alias -s jpg=feh
+alias -s gif=feh
+alias -s sxw=soffice
+alias -s doc=soffice
+alias -s gz=tar -xzvf
+alias -s bz2=tar -xjvf
+alias -s java=$EDITOR
+alias -s txt=$EDITOR
+alias -s PKGBUILD=$EDITOR
+
+# Abbreviation
+alias -g L='|less' 
+alias -g S='&> /dev/null &'
+
+
+if [ -f ~/.shell_env ]; then
+    source ~/.shell_env
+fi
+
+if [ -f ~/.shell_aliases ]; then
+    source ~/.shell_aliases
+fi

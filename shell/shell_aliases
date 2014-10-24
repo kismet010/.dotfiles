@@ -1,0 +1,76 @@
+# Custom
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ls='ls --color=auto'
+alias lsa='ls -lha --color=auto'
+alias rm='rm -rfI'
+alias cp='cp -r'
+alias rs='rsync -hrP'
+alias srs='sudo rsync -hrP'
+alias scp='scp -r'
+alias c='clear'
+alias e='exit'
+alias s='sudo'
+alias k='pgrep ${1}|kill -9'
+alias ka='killall'
+alias x='startx'
+alias v='vim'
+alias sv='sudo vim'
+alias tmux='tmux -2'
+alias t='tmux -2 attach -d'
+alias i='~/.sh/./init.sh'
+alias -g mp='mplayer -fs -vo vaapi -va vaapi '
+#alias -g mp='mplayer -fs'
+alias sshc='ssh -C4c arcfour,blowfish-cbc -X'
+alias clock='s ntpdate es.pool.ntp.org; sudo hwclock --systohc'
+alias zombie="sudo kill -HUP `ps -A -ostat,ppid,pid,cmd | grep -e '^[Zz]' | awk '{print $2}'`"
+
+# Save commands in docfiles
+alias docg='echo "# ${1}" >> ~/.doc/git'
+alias docwp='echo "# ${1}" >> ~/.doc/wordpress'
+alias doc='echo "# ${1}" >> ~/.doc/doc'
+
+# Git
+alias gac='ga -A; gcmsg ${1}'
+
+# JavaScript
+alias bower='noglob bower'
+alias gw='grunt watch'
+
+# Aliases per distribution
+if grep -q "Arch Linux" /etc/issue ; then
+    export UNIX="arch"
+elif grep -q "Debian\|Ubuntu" -o /etc/issue ; then
+    export UNIX="debian"
+fi
+case ${UNIX} in
+    "arch")
+        alias up='s pacman -Syu'
+        alias yup='yaourt -Syu'
+        alias sea='s pacman -Ss'
+        alias ins='s pacman -S'
+        alias rem='s pacman -Rns'
+        alias y='yaourt'
+        alias yup='yaourt -Syua --noconfirm'
+        alias yins='yaourt -S --noconfirm'
+        alias yrem='yaourt -Rns --noconfirm'
+        alias porphan='s pacman -Rsn $(pacman -Qtdq)'
+        alias pcache='s pacman -Scc'
+        alias prepo='s reflector -l 20 --sort rate --save /etc/pacman.d/mirrorlist'
+        alias a='s poweroff'
+        alias r='s reboot'
+        alias h='slock & sudo systemctl hibernate'
+        alias d='sleep ${1}h; slock & sudo systemctl hibernate'
+        alias um='pumount /media/*'
+        alias sc='s systemctl'
+        ;;
+    "debian")
+        alias up='sudo apt-get update; sudo apt-get upgrade'
+        alias sea='sudo apt-cache search'
+        alias ins='sudo apt-get --no-install-recommends install'
+        alias rem='sudo apt-get purge'
+        alias clean='sudo apt-get autoremove; sudo apt-get clean'
+        alias a='sudo shutdown -h now'
+        alias r='sudo reboot'
+        ;;
+esac

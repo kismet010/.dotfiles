@@ -1,0 +1,141 @@
+!Xcursor.theme:  entis
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+
+! URXVT
+!-------
+
+*font:               xft:Inconsolata:style=Semibold:pixelsize=15:antialias=true:hinting=slight
+*boldFont:           xft:Inconsolata:style=bold:pixelsize=15:antialias=true:hinting=slight
+*termName:      rxvt-unicode-256color
+*saveLines:	5000
+*buffered:      true
+*urgentOnBell: 	true
+*cursorBlink: 	false
+*scrollBar:	false
+*reverseVideo:	false
+! transparencia falsa
+!URxvt.transparent: true
+!URxvt.shading:     10
+!URxvt.tint:        black
+! transparencia real
+!transparente=0000 opaco=ffff
+!URxvt.background:  rgba:1111/1111/1111/0000
+!URxvt.depth:       32
+! abrir url con teclado (pkg: urxvt-perls)
+URxvt.perl-ext:      default,url-select
+URxvt.keysym.M-u:    perl:url-select:select_next
+URxvt.url-select.launcher:   /usr/bin/firefox -new-tab
+URxvt.url-select.underline: true
+! links colors
+URxvt.colorIT:      #87af5f
+URxvt.colorBD:      #d7d7d7
+URxvt.colorUL:      #87afd7
+
+! COLORS
+!--------
+
+!*background:  #000000
+!*cursorColor: #aaaaaa
+!*foreground:  #aaaaaa
+!!negro
+!*color0:      #666666
+!*color8:      #888888
+!!rojo
+!*color1:      #d96b6b
+!*color9:      #d96b6b
+!!verde
+!*color2:      #72bf72
+!*color10:     #72bf72
+!!amarillo
+!*color3:      #cca761
+!*color11:     #cca761
+!!azul
+!*color4:      #5e96e6
+!*color12:     #5e96e6
+!!magenta
+!*color5:      #cc83cc
+!*color13:     #cc83cc
+!!cian
+!*color6:      #5accb9
+!*color14:     #5accb9
+!!blanco
+!*color7:      #cccccc
+!*color15:     #eeeeee
+
+*background:  #1c1c1c
+*cursorColor: #d0d0d0
+*foreground:  #d0d0d0
+!negro
+*color0:      #080808
+*color8:      #888888
+!rojo
+*color1:      #d7875f
+*color9:      #ff5f5f
+!verde
+*color2:      #87d75f
+*color10:     #d7ff87
+!amarillo
+*color3:      #d7d787
+*color11:     #ffff87
+!azul
+*color4:      #6aa6c2
+*color12:     #87afff
+!magenta
+*color5:      #807caa
+*color13:     #d787ff
+!cian
+*color6:      #8ac6f2
+*color14:     #87ffd7
+!blanco
+*color7:      #cccccc
+*color15:     #eeeeee
+
+! XCALC
+!-------
+
+xcalc*geometry:                        200x275
+xcalc.ti.bevel.background:             #111111
+xcalc.ti.bevel.screen.background:      #000000
+xcalc.ti.bevel.screen.DEG.background:  #000000
+xcalc.ti.bevel.screen.DEG.foreground:  LightSeaGreen
+xcalc.ti.bevel.screen.GRAD.background: #000000
+xcalc.ti.bevel.screen.GRAD.foreground: LightSeaGreen
+xcalc.ti.bevel.screen.RAD.background:  #000000
+xcalc.ti.bevel.screen.RAD.foreground:  LightSeaGreen
+xcalc.ti.bevel.screen.INV.background:  #000000
+xcalc.ti.bevel.screen.INV.foreground:  Red
+xcalc.ti.bevel.screen.LCD.background:  #000000
+xcalc.ti.bevel.screen.LCD.foreground:  LightSeaGreen
+xcalc.ti.bevel.screen.LCD.shadowWidth: 0
+xcalc.ti.bevel.screen.M.background:    #000000
+xcalc.ti.bevel.screen.M.foreground:    LightSeaGreen
+xcalc.ti.bevel.screen.P.background:    #000000
+xcalc.ti.bevel.screen.P.foreground:    Yellow
+xcalc.ti.Command.foreground:  White
+xcalc.ti.Command.background:  #777777
+xcalc.ti.button5.background:  Orange3
+xcalc.ti.button19.background: #611161
+xcalc.ti.button18.background: #611161
+xcalc.ti.button20.background: #611111
+xcalc.ti.button25.background: #722222
+xcalc.ti.button30.background: #833333
+xcalc.ti.button35.background: #944444
+xcalc.ti.button40.background: #a55555
+xcalc.ti.button22.background: #222262
+xcalc.ti.button23.background: #222262
+xcalc.ti.button24.background: #222272
+xcalc.ti.button27.background: #333373
+xcalc.ti.button28.background: #333373
+xcalc.ti.button29.background: #333373
+xcalc.ti.button32.background: #444484
+xcalc.ti.button33.background: #444484
+xcalc.ti.button34.background: #444484
+xcalc.ti.button37.background: #555595
+xcalc.ti.button38.background: #555595
+xcalc.ti.button39.background: #555595
+XCalc*Cursor:                 hand2
+XCalc*ShapeStyle:             rectangle

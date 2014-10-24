@@ -1,0 +1,9 @@
+[user]
+	email = kismet010@gmail.com
+	name = Kismet010
+[http]
+	sslVerify = false
+[init]
+	templatedir = ~/.git_template
+[alias]
+	ctags = !.git/hooks/ctags

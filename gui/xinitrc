@@ -1,0 +1,62 @@
+## fondo ------------------------------------------------------------------------
+#
+## simple
+#xsetroot -solid "#1c1c1c" &
+## imagen
+##feh --bg-scale ~/mm/ima/fondo/madera.jpg &
+## transición
+##while true;
+##do
+##   find ~/mm/ima/fondo/slide -type f -name '*.jpg' -o -name '*.png' | shuf -n 1 | xargs feh --bg-scale
+##   sleep 1m
+##done &
+#
+#
+## configuracion ----------------------------------------------------------------
+#
+#sh ~/bin/sh/hdd_restart.sh &
+## usa .Xresources según host
+##xrdb -merge ~/.Xresources-${HOSTNAME}
+#xrdb -merge ~/.Xresources
+## mata X
+##setxkbmap -option terminate:ctrl_alt_bksp
+## brillo
+#xbacklight -set 0 &
+## fuentes
+#xset fp+ /usr/share/fonts/local &
+## teclado
+#setxkbmap -layout es &
+#
+#
+## aplicaciones -----------------------------------------------------------------
+#
+#dropbox start &
+#slock &
+#conky -d | while read -r; do xsetroot -name "$REPLY"; done >/dev/null 2>&1 &
+#xbindkeys &
+#firefox &
+## tmux
+#tmux new-session -d -s kismet
+#tmux new-window -t kismet:1
+##tmux send-keys 'sleep 20; weechat-curses' C-m
+##tmux new-window -t kismet:2
+##tmux new-window -t kismet:3
+##tmux send-keys 'sleep 20; newsbeuter' C-m
+##tmux split-window -v
+##tmux send-keys 'sleep 20; turses' C-m
+##tmux select-window -t kismet:1
+#urxvt -e zsh -c "tmux -2 attach-session -t kismet" &
+#stardict &
+#mpd ~/.mpd/config &
+## fix java/dwm
+#wmname LG3D &
+#
+#
+## escritorios ------------------------------------------------------------------
+#
+#exec dwm
+#
+## fin --------------------------------------------------------------------------
+
+
+xrdb -merge ~/.Xresources

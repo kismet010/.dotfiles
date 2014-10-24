@@ -1,0 +1,4 @@
+export ANDROID_HOME=~/bin/android-sdk
+export PATH=${PATH}:~/bin/android-sdk/tools
+export PATH=${PATH}:~/bin/android-sdk/platform-tools
+export PATH=${PATH}:~/bin/android-sdk/build-tools/21.0.2

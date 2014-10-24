@@ -1,0 +1,282 @@
+" vimrc
+" kismet010 [at] gmail [dot] com
+
+if $TERM != "linux"
+    set t_Co=256
+    color wombat256mod
+	"colorscheme base16-default
+	"set background=dark
+	""let base16colorspace=256
+    " Transparent background
+    au colorscheme * hi Normal ctermbg=none
+endif
+set nocompatible
+set number 
+set relativenumber
+set tabstop=4
+set softtabstop=4
+set noexpandtab
+set modeline
+set shiftwidth=4
+set shiftround
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set tw=79
+set nowrap                  " Don't cut lines on load
+set fo-=t                   " Don't cut lines when typing
+"set colorcolumn=80
+set pastetoggle=<F2>
+set clipboard=unnamed
+set autochdir               " Autochange window dir
+set laststatus=2            " Status bar
+set noshowmode              " Done by powerline
+set history=1000
+set undolevels=1000
+set nobackup
+set nowritebackup
+set noswapfile
+set foldmethod=syntax
+set foldlevelstart=1
+set foldnestmax=3
+if has('mouse')
+    set mouse=a
+endif
+set wildmode=longest,list,full
+set wildmenu
+set backspace=2
+"set encoding=utf-8
+set scrolloff=3
+set noerrorbells
+set novisualbell
+set nolazyredraw
+set smartindent
+set autoindent
+"set showmatch
+set mousehide
+set showmode
+set showcmd
+set ttyfast
+set helplang=es
+set cryptmethod=blowfish
+filetype off
+
+" Fix terminal timeout when pressing escape
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
+
+" NERDTree
+"let NERDTreeQuitOnOpen = 1    " Open file > close nerdtree 
+let NERDTreeShowLineNumbers=1
+"map tr :NERDTreeToggle<CR>
+"map <leader>n <plug>NERDTreeTabsToggle<CR>
+map <F8> <plug>NERDTreeTabsToggle<CR>
+
+" Syntastic
+"inoremap <leader>c :SyntasticToggleMode<CR>
+let g:syntastic_auto_loc_list=1
+"PHP CodeSniffer using Zend
+"let g:syntastic_phpcs_conf = '--standard=Zend'
+"let g:syntastic_phpcs_disable=1
+
+" Ctags
+nmap <F9> :TagbarToggle<CR>
+map <leader>t :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" Tabularize
+nmap <C-t> :Tabularize /=<CR>
+vmap <C-t> :Tabularize /=<CR>
+nmap <C-b> :Tabularize /:\zs<CR>
+vmap <C-b> :Tabularize /:\zs<CR>
+
+
+""" Keybind
+
+let mapleader = ","
+imap ç <Esc>
+nmap ñ <C-w>
+noremap <leader>q :q<CR>
+noremap <leader>x :x!<CR>
+noremap <leader>a :xa!<CR>
+map <leader>k :tabnew<CR>
+map <leader>j :tabprevious<CR>
+map <leader>l :tabnext<CR>
+nmap <leader>s :mksession! ~/.vim/session<CR>
+nmap <leader>S :source ~/.vim/session<CR>
+
+nnoremap <leader>p :CtrlP<CR>
+nnoremap <leader>a :Ag<space>
+nnoremap <leader>c :!coffee -c %<CR>
+
+"Search an replace word under cursor
+nnoremap <Leader>r "*yiw:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+
+" Replace with yanked text (lets paste repeatedly)
+vmap r "_dP
+
+" Close tags
+"inoremap <leader>c </<C-X><C-O>
+
+" Save as root
+cmap w!! %!sudo tee > /dev/null %
+
+" Clean search results
+"nnoremap <leader>c :noh<CR>
+
+" Vpaste
+map vp :exec "w !vpaste ft=".&ft<CR>
+vmap vp <ESC>:exec "'<,'>w !vpaste ft=".&ft<CR>
+
+
+""" Misc
+
+" For encrypted files (indent passwords with: # vim: fdm=indent fdn=1 sw=2:)
+autocmd BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
+
+" Autoreload this file
+autocmd! bufwritepost .vimrc source %
+
+" Autosave session on quit
+"autocmd VimLeave * mksession! ~/.vim/session
+
+" Open with last cursor position
+autocmd BufReadPost *
+            \ if line("'\"") > 1 && line("'\"") <= line("$") |
+            \   exe "normal! g`\"" |
+            \ endif
+
+" Filetypes
+"au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+"au Filetype html setlocal ts=2 sts=2 sw=2
+"au Filetype css setlocal ts=2 sts=2 sw=2
+"au Filetype scss setlocal ts=2 sts=2 sw=2
+"au Filetype javascript setlocal ts=2 sts=2 sw=2
+"au BufNewFile,BufReadPost *.coffee setlocal foldmethod=indent nofoldenable shiftwidth=2 expandtab
+au BufNewFile,BufRead *.twig set ft=html
+au BufNewFile,BufRead *.less set filetype=scss
+
+" Syntax
+"let php_htmlInStrings=1
+"let php_sql_query=1
+"let php_parent_error_close=1
+
+" html custom indent
+let g:html_exclude_tags = ['html', 'style', 'script', 'body']
+
+" Folding
+nnoremap <Space> za
+vnoremap <Space> za
+"let javaScript_fold=1
+"let php_folding=2
+"let ruby_fold=1
+"let sh_fold_enabled=1
+"let vimsyn_folding='af'
+"let xml_syntax_folding=1
+
+" Speller
+set nospell
+set spellfile=~/.vim/dict.add
+set spelllang=es,en
+set spellsuggest=10
+"nmap sp :set spell<CR>
+"nmap sl ]s
+"nmap sh [s
+"nmap sj z=
+"nmap sk zg
+
+" Putty colors
+if &term =~ "xterm"
+    set t_Co=256
+    if has("terminfo")
+        let &t_Sf=nr2char(27).'[3%p1%dm'
+        let &t_Sb=nr2char(27).'[4%p1%dm'
+    else
+        let &t_Sf=nr2char(27).'[3%dm'
+        let &t_Sb=nr2char(27).'[4%dm'
+    endif
+endif
+
+" Disable blinking
+set noeb vb t_vb=
+au GUIEnter * set vb t_vb=
+
+
+""" Functions
+
+"function! RefreshBrowser()
+"    wa!
+"    silent !xdotool key super+2; xdotool key control+F5
+"    redraw!
+"endfunction
+"inoremap <Leader>m <C-\><C-O>:call RefreshBrowser()<CR>
+"map <Leader>m :call RefreshBrowser()<CR>
+
+" Tab completion
+"function! SuperCleverTab()
+"    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+"        return "\<Tab>"
+"    else
+"        if &omnifunc != ''
+"            return "\<C-X>\<C-O>"
+"        elseif &dictionary != ''
+"            return "\<C-K>"
+"        else
+"            return "\<C-N>"
+"        endif
+"    endif
+"endfunction
+"inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+
+" Autofit quickfix window
+au FileType qf call AdjustWindowHeight(1, 10)
+function! AdjustWindowHeight(minheight, maxheight)
+    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
+
+" Add closing pairs whether end of line
+"function! ConditionalPairMap(open, close)
+"    let line = getline('.')
+"    let col = col('.')
+"    if col < col('$') || stridx(line, a:close, col + 1) != -1
+"        return a:open
+"    else
+"        return a:open . a:close . repeat("\<left>", len(a:close))
+"    endif
+"endf
+"inoremap <expr> ( ConditionalPairMap('(', ')')
+"inoremap <expr> { ConditionalPairMap('{', '}')
+"inoremap <expr> [ ConditionalPairMap('[', ']')
+
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
+
+
+" Encrypted files conf
+autocmd BufReadPre * if system("head -c 9 " . expand("<afile>")) == "VimCrypt~" | call SetupEncryption() | endif
+function SetupEncryption()
+  " disable the swap file
+  setlocal noswapfile
+  " disable viminfo (global)
+  set viminfo=
+  " folding
+  setlocal foldmethod=expr
+  setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
+  set foldtext=getline(v:foldstart)
+  set fillchars=fold:\ "(there's a space after that \)
+  " auto-close folds
+  "set foldlevel=0
+  "set foldclose=all
+  " make it harder to open folds by accident
+  set foldopen=""
+  " move cursor over word and press 'e' to obfuscate/unobfuscate it
+  noremap e g?iw
+endfunction
