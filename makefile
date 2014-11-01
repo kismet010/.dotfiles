@@ -14,12 +14,12 @@ SRC = ~/src
 WWW = ~/www
 
 USER = $(shell id -u)
-ifneq ($USER, 0)  # Check root
+ifneq ($USER, 0)  # 'sudo' for non root users
 	SUDO = sudo
 endif
 
 define install
-	$(info, $(SUDO)) apt-get -y --force-yes install --no-install-recommends $1
+	$(SUDO) apt-get -y --force-yes install --no-install-recommends $1
 endef
 
 define symlink
@@ -130,10 +130,11 @@ server:
 
 lamp:
 	$(call info, "Installing lamp")
-	$(call install, apache2 mysql-server php5-mysql php5-cli php5-mcrypt)
-	@sudo service apache2 restart
+	$(call install, apache2 mysql-server php5-mysql php5-cli php5-mcrypt phpmyadmin)
+	$(call warning, "Add 'Include /etc/phpmyadmin/apache.conf' to /etc/apache2/apache2.conf")
+	@$(SUDO) service apache2 restart
 
 nodejs:
 	$(call info, "Installing Node.js")
 	$(call install, npm nodejs)
-	@sudo ln -s /usr/bin/nodejs /usr/bin/node
+	@$(SUDO) ln -s /usr/bin/nodejs /usr/bin/node
