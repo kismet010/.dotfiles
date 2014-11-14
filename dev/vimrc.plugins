@@ -1,0 +1,106 @@
+"===============================================================================
+" Plugins
+"===============================================================================
+
+" Initialize Vundle
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'majutsushi/tagbar'
+Plugin 'godlygeek/tabular'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'Shougo/neocomplcache'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'rking/ag.vim'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'takac/vim-hardtime'
+"Plugin 'Raimondi/delimitMate'
+"Plugin 'vim-scripts/LargeFile'
+
+"Plugin "pangloss/vim-javascript"
+"Plugin "kchmck/vim-coffee-script"
+"Plugin "othree/html5.vim"
+"Plugin 'marijnh/tern_for_vim'
+"Plugin 'suan/vim-instant-markdown'
+
+" End Vundle
+call vundle#end()
+filetype plugin indent on
+
+
+"-------------------------------------------------------------------------------
+" Plugins configurations
+"-------------------------------------------------------------------------------
+
+" Airline
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+
+" NERDTree
+map <leader>n :NERDTreeToggle<CR>
+let NERDTreeShowLineNumbers=1
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Tabularize
+nmap <C-t> :Tabularize /=<CR>
+vmap <C-t> :Tabularize /=<CR>
+nmap <C-b> :Tabularize /:\zs<CR>
+vmap <C-b> :Tabularize /:\zs<CR>
+
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+
+" Syntastic
+"inoremap <leader>c :SyntasticToggleMode<CR>
+"let g:syntastic_auto_loc_list=1
+"PHP CodeSniffer using Zend
+"let g:syntastic_phpcs_conf = '--standard=Zend'
+"let g:syntastic_phpcs_disable=1
+
+"" Ctags
+"nmap <F9> :TagbarToggle<CR>
+"map <leader>t :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+"" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+"if executable('ag')
+"  " Use Ag over Grep
+"  set grepprg=ag\ --nogroup\ --nocolor
+"
+"  " Use ag in CtrlP for listing files.
+"  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"endif
+
+"" UltiSnips
+"let g:UltiSnipsSnippetsDir        = '~/.doc/snips/'
+"let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snips']
+"let g:UltiSnipsEditSplit='horizontal'
+"let g:UltiSnipsExpandTrigger="<F8>"
+"let g:UltiSnipsJumpForwardTrigger="<F8>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-F8>"
+
+"" Hardtime
+"let g:hardtime_default_on = 0
+"let g:hardtime_maxcount = 5
+
+" Jedi
+" cd ~/.vim/bundle/jedi-vim; git submodule update --init
+"let g:jedi#auto_initialization = 0
+"let g:jedi#related_names_command = "<C-leader>n"
+"let g:jedi#popup_on_dot = 0
+"let g:jedi#show_function_definition = "0"
+"let g:jedi#popup_select_first = 1
+
+"" Markdown
+"let g:instant_markdown_slow = 1
+"let g:instant_markdown_autostart = 0

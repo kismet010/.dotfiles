@@ -76,12 +76,17 @@ clean:
 	@mkdir -p $(BIN) $(SRC) $(WWW)
 
 update:
-	@sudo apt-get upgrade ; sudo apt-get update ; apt-get autoremove
-	@git add . ; git commit -m "update" ; git pull ; git push
-	$(call info, "Updating...")
+	$(call info, "Update repository? [y/N]")
+	@read n ; \
+	case $$n in \
+	    y|Y) git add . ; git commit -m "Update" ; git pull ; git push ;; \
+	esac
 	$(call symlink,shell)
 	$(call symlink,dev)
 	$(call symlink,gui)
+
+update-system:
+	@$(SUDO) apt-get upgrade ; $(SUDO) apt-get update ; $(SUDO) apt-get autoremove
 
 install-all:
 	@$(MAKE) -j minimal development
@@ -115,8 +120,8 @@ tmux:
 
 vimrc:
 	$(call info, "Configuring Vim")
-	@git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-	@vim +BundleInstall +qall
+	@git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	@vim +PluginInstall +qall
 
 sshrc:
 	$(call info, "Installing sshrc")

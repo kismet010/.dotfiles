@@ -1,5 +1,6 @@
-" vimrc
+"===============================================================================
 " kismet010 [at] gmail [dot] com
+"===============================================================================
 
 if $TERM != "linux"
     set t_Co=256
@@ -10,6 +11,7 @@ if $TERM != "linux"
     " Transparent background
     au colorscheme * hi Normal ctermbg=none
 endif
+
 set nocompatible
 set number 
 set relativenumber
@@ -61,7 +63,8 @@ set showcmd
 set ttyfast
 set helplang=es
 set cryptmethod=blowfish
-filetype off
+syntax enable
+filetype plugin indent on
 
 " Fix terminal timeout when pressing escape
 if ! has('gui_running')
@@ -73,32 +76,10 @@ if ! has('gui_running')
     augroup END
 endif
 
-" NERDTree
-"let NERDTreeQuitOnOpen = 1    " Open file > close nerdtree 
-let NERDTreeShowLineNumbers=1
-"map tr :NERDTreeToggle<CR>
-"map <leader>n <plug>NERDTreeTabsToggle<CR>
-map <F8> <plug>NERDTreeTabsToggle<CR>
 
-" Syntastic
-"inoremap <leader>c :SyntasticToggleMode<CR>
-let g:syntastic_auto_loc_list=1
-"PHP CodeSniffer using Zend
-"let g:syntastic_phpcs_conf = '--standard=Zend'
-"let g:syntastic_phpcs_disable=1
-
-" Ctags
-nmap <F9> :TagbarToggle<CR>
-map <leader>t :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-
-" Tabularize
-nmap <C-t> :Tabularize /=<CR>
-vmap <C-t> :Tabularize /=<CR>
-nmap <C-b> :Tabularize /:\zs<CR>
-vmap <C-b> :Tabularize /:\zs<CR>
-
-
-""" Keybind
+"===============================================================================
+" Keybind
+"===============================================================================
 
 let mapleader = ","
 imap ç <Esc>
@@ -114,7 +95,6 @@ nmap <leader>S :source ~/.vim/session<CR>
 
 nnoremap <leader>p :CtrlP<CR>
 nnoremap <leader>a :Ag<space>
-nnoremap <leader>c :!coffee -c %<CR>
 
 "Search an replace word under cursor
 nnoremap <Leader>r "*yiw:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
@@ -122,8 +102,8 @@ nnoremap <Leader>r "*yiw:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 " Replace with yanked text (lets paste repeatedly)
 vmap r "_dP
 
-" Close tags
-"inoremap <leader>c </<C-X><C-O>
+" Close HTML tags
+inoremap <leader>c </<C-X><C-O>
 
 " Save as root
 cmap w!! %!sudo tee > /dev/null %
@@ -131,12 +111,10 @@ cmap w!! %!sudo tee > /dev/null %
 " Clean search results
 "nnoremap <leader>c :noh<CR>
 
-" Vpaste
-map vp :exec "w !vpaste ft=".&ft<CR>
-vmap vp <ESC>:exec "'<,'>w !vpaste ft=".&ft<CR>
 
-
-""" Misc
+"===============================================================================
+" Misc
+"===============================================================================
 
 " For encrypted files (indent passwords with: # vim: fdm=indent fdn=1 sw=2:)
 autocmd BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
