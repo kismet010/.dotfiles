@@ -212,6 +212,10 @@ endfunction
 " Indent passwords with: # vim: fdm=indent fdn=1 sw=2:
 autocmd BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
 
+" SuperRetab (convert leading spaces to tabs)
+" Use :'<,'>SuperRetab 4
+command! -nargs=1 -range SuperRetab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
+
 
 "===============================================================================
 " Other sources 
