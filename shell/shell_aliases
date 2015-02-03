@@ -24,7 +24,7 @@ alias sshc='ssh -C4c arcfour,blowfish-cbc -X'
 alias clock='s ntpdate es.pool.ntp.org; sudo hwclock --systohc'
 alias zombie="sudo kill -HUP `ps -A -ostat,ppid,pid,cmd | grep -e '^[Zz]' | awk '{print $2}'`"
 
-alias i='~/bin/scripts/init.sh'
+alias i='~/bin/scripts/init/init.sh'
 
 # Save commands in docfiles
 alias docg='echo "# ${1}" >> ~/.doc/git'
