@@ -8,8 +8,8 @@ Xft.hintstyle:  hintslight
 ! URXVT
 !-------
 
-*font:               xft:Inconsolata:style=Semibold:pixelsize=16:antialias=true:hinting=slight
-*boldFont:           xft:Inconsolata:style=bold:pixelsize=16:antialias=true:hinting=slight
+*font: xft:Inconsolata:style=Semibold:pixelsize=16:antialias=true:hinting=slight
+*boldFont: xft:Inconsolata:style=bold:pixelsize=16:antialias=true:hinting=slight
 *termName:      rxvt-unicode-256color
 *saveLines:	5000
 *buffered:      true
