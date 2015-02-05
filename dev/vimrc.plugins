@@ -27,6 +27,7 @@ Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'vim-scripts/LargeFile'
 
 Plugin 'othree/html5.vim'
+Plugin 'digitaltoad/vim-jade'
 "Plugin "pangloss/vim-javascript"
 "Plugin "kchmck/vim-coffee-script"
 "Plugin 'marijnh/tern_for_vim'
