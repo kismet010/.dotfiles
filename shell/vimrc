@@ -117,8 +117,9 @@ cmap w!! %!sudo tee > /dev/null %
 "===============================================================================
 
 au Filetype javascript setlocal ts=2 sts=2 sw=2
-au Filetype *.html setlocal ts=2 sts=2 sw=2
-au Filetype *.jade setlocal ts=2 sts=2 sw=2
+au Filetype html setlocal ts=2 sts=2 sw=2
+au Filetype jade setlocal ts=2 sts=2 sw=2
+au Filetype scss setlocal ts=2 sts=2 sw=2
 "au BufNewFile,BufReadPost *.coffee setlocal foldmethod=indent nofoldenable shiftwidth=2 expandtab
 "au BufNewFile,BufRead *.twig set ft=html
 au BufNewFile,BufRead *.less set filetype=scss

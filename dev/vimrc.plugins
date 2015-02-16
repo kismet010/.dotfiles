@@ -6,32 +6,45 @@
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 Plugin 'gmarik/Vundle.vim'
+
+" Visual
 Plugin 'bling/vim-airline'
+
+" Movement
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'bkad/CamelCaseMotion'
+"Plugin 'takac/vim-hardtime'
+
+" File explorers 
+Plugin 'Shougo/unite.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'Shougo/neocomplcache'
-Plugin 'kien/ctrlp.vim'
+"Plugin 'rking/ag.vim'
+
+" Completition / helpers 
+Plugin 'Valloric/YouCompleteMe' " cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer
+Plugin 'Raimondi/delimitMate'
+Plugin 'godlygeek/tabular'
+"Plugin 'Shougo/neocomplcache'
+"Plugin 'SirVer/ultisnips'
+
+" Syntax / Tags
 Plugin 'scrooloose/syntastic'
 Plugin 'majutsushi/tagbar'
-Plugin 'godlygeek/tabular'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'terryma/vim-multiple-cursors'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'rking/ag.vim'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'takac/vim-hardtime'
-"Plugin 'Raimondi/delimitMate'
-"Plugin 'vim-scripts/LargeFile'
 
+" VCS
+"Plugin 'tpope/vim-fugitive'
+
+" JavaScript
+Plugin 'pangloss/vim-javascript'
+Plugin 'elzr/vim-json'
+Plugin 'marijnh/tern_for_vim' " ~/.vim/bundle/tern_for_vim && npm install
+
+" HTML
 Plugin 'othree/html5.vim'
 Plugin 'digitaltoad/vim-jade'
-"Plugin "pangloss/vim-javascript"
-"Plugin "kchmck/vim-coffee-script"
-"Plugin 'marijnh/tern_for_vim'
-"Plugin 'suan/vim-instant-markdown'
 
 " End Vundle
 call vundle#end()
@@ -63,7 +76,8 @@ vmap <C-b> :Tabularize /:\zs<CR>
 let g:neocomplcache_enable_at_startup = 1
 
 " Syntastic
-inoremap <leader>c :SyntasticToggleMode<CR>
+let g:syntastic_check_on_open=1
+"inoremap <leader>c :SyntasticToggleMode<CR>
 "let g:syntastic_auto_loc_list=1
 "PHP CodeSniffer using Zend
 "let g:syntastic_phpcs_conf = '--standard=Zend'
