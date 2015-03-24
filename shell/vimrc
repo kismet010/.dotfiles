@@ -33,7 +33,7 @@ set fo-=t                   " Don't cut lines when typing
 set cursorline cursorcolumn
 set pastetoggle=<F2>
 set clipboard=unnamed
-"set autochdir               " Autochange window dir
+set autochdir               " Autochange window dir
 set laststatus=2            " Status bar
 set noshowmode              " Done by powerline
 set history=1000
@@ -41,9 +41,10 @@ set undolevels=1000
 set nobackup
 set nowritebackup
 set noswapfile
-set foldmethod=syntax
-set foldlevelstart=1
-set foldnestmax=3
+"set foldmethod=syntax
+set foldmethod=indent
+"set foldnestmax=5
+"set foldlevelstart=1
 if has('mouse')
 	set mouse=a
 endif
