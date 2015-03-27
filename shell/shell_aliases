@@ -25,18 +25,13 @@ alias clock='s ntpdate es.pool.ntp.org; sudo hwclock --systohc'
 alias zombie="sudo kill -HUP `ps -A -ostat,ppid,pid,cmd | grep -e '^[Zz]' | awk '{print $2}'`"
 
 alias i='~/bin/scripts/init/init.sh'
-
-# Save commands in docfiles
-alias docg='echo "# ${1}" >> ~/.doc/git'
-alias docwp='echo "# ${1}" >> ~/.doc/wordpress'
-alias doc='echo "# ${1}" >> ~/.doc/doc'
+alias h='~/bin/scripts/halt/halt.sh'
 
 # Git
 alias gac='ga -A; gcmsg ${1}'
 
 # JavaScript
 alias bower='noglob bower'
-alias gw='grunt watch'
 
 # Aliases per distribution
 if grep -q "Arch Linux" /etc/issue ; then
@@ -71,7 +66,6 @@ case ${UNIX} in
         alias ins='sudo apt-get -y --force-yes --no-install-recommends install'
         alias rem='sudo apt-get purge'
         alias clean='sudo apt-get autoremove; sudo apt-get clean'
-        alias a='sudo shutdown -h now'
         alias r='sudo reboot'
         ;;
 esac
