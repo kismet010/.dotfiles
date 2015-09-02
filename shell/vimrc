@@ -86,6 +86,7 @@ endif
 let mapleader = ","
 imap ç <Esc>
 nmap ñ <C-w>
+nmap ; <C-w>
 noremap <leader>q :q<CR>
 noremap <leader>x :x!<CR>
 noremap <leader>a :xa!<CR>
