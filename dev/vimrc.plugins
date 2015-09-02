@@ -118,6 +118,5 @@ let g:syntastic_check_on_open=1
 "let g:jedi#show_function_definition = "0"
 "let g:jedi#popup_select_first = 1
 
-"" Markdown
-"let g:instant_markdown_slow = 1
-"let g:instant_markdown_autostart = 0
+" Markdown
+let vim_markdown_preview_browser='Google Chrome'
