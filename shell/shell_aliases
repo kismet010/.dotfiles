@@ -27,6 +27,8 @@ alias zombie="sudo kill -HUP `ps -A -ostat,ppid,pid,cmd | grep -e '^[Zz]' | awk 
 alias i='~/bin/scripts/init/init.sh'
 alias h='~/bin/scripts/halt/halt.sh'
 
+alias dc='docker-compose'
+
 # Git
 alias gac='ga -A; gcmsg ${1}'
 
